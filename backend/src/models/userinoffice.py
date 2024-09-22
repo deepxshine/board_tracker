@@ -8,5 +8,9 @@ from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 
-class Base(DeclarativeBase):
-    pass
+class UserInOffice(Base):
+    __tablename__="UserInOffice"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("User.id"))
+    office_id: Mapped[int] = mapped_column(ForeignKey("Office.id"))
