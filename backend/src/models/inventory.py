@@ -1,10 +1,9 @@
-from . import Base
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
+from .base import Base
+from sqlalchemy import Integer, String, Column
 
 
 class Inventory(Base):
-    __tablename__="Component"
+    __tablename__ = "inventory"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[int] = mapped_column(nullable=False) 
+    id = Column(Integer, primary_key=True)
+    title = Column(String, nullable=False)

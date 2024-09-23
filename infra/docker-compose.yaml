@@ -13,14 +13,12 @@ services:
             -   db
         volumes:
             -   ../backend/src:/backend/src
+        environment:
+            env_file: .env
 
     db:
         image: postgres:15.6-bullseye
         ports:
             - "5432:5432"
         environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: postgres
-            POSTGRES_PORT: 5432
-            POSTGRES_HOST: localhost
+            env_file: .env
