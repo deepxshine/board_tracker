@@ -1,12 +1,10 @@
-from . import Base
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
+from .base import Base
+from sqlalchemy import Column, Integer, ForeignKey
 
 
 class InventoryInTiket(Base):
-    __tablename__ = "InventoryInTiket"
+    __tablename__ = "inventory_in_ticket"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    inventory_id: Mapped[int] = mapped_column(ForeignKey("Inventory.id"))
-    ticket_id: Mapped[int] = mapped_column(ForeignKey("Ticket.id"))
+    id = Column(Integer, primary_key=True)
+    inventory_id = Column(ForeignKey("inventory.id"))
+    ticket_id = Column(ForeignKey("ticket.id"))
