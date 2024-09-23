@@ -12,6 +12,7 @@ class Ticket(Base):
     client: Mapped[str] = mapped_column(nullable=False)
     phone_number: Mapped[str] = mapped_column(nullable=False)
     user_id: Mapped[int] = mapped_column(ForeignKey("User.id"))
+    client_id: Mapped[int] = mapped_column(ForeignKey("Client.id"))
     issue_date: Mapped[date] = mapped_column(nullable=False)
     return_date: Mapped[date]
     comment: Mapped[str]

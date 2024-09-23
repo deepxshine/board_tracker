@@ -4,7 +4,7 @@ from sqlalchemy.orm import mapped_column
 
 
 class Inventory(Base):
-    __tablename__="Component"
+    __tablename__="Inventory"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[int] = mapped_column(nullable=False) 
+    title: Mapped[str] = mapped_column(nullable=False) 
