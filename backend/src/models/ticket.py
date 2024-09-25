@@ -8,7 +8,6 @@ class Ticket(Base):
 
     id = Column(Integer, primary_key=True)
     client_id = Column(ForeignKey("client.id"))
-    phone_number = Column(String, nullable=False)
     issue_date = Column(DATE, nullable=False, default=date.today())
     return_date = Column(DATE)
     comment = Column(String)

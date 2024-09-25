@@ -4,7 +4,6 @@ from datetime import date
 
 
 class TicketInSchema(BaseModel):
-    phone_number: int
     issue_date: date
     comment: Optional[str]
 
