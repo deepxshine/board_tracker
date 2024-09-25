@@ -17,3 +17,4 @@ class TicketOutSchema(TicketInSchema):
 class TicketFilterSchema(TicketInSchema):
     id: Optional[int]
     client_id: Optional[int]
+    
