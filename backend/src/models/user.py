@@ -8,6 +8,7 @@ from src.models.base import Base
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
+    __tablename__ = "user"
     id = Column(Integer, primary_key=True)
     fullname = Column(String, nullable=False)
 

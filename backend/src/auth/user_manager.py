@@ -16,6 +16,5 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, id]):
         print(f"User {user.id} has registered.")
 
 
-
 async def get_user_manager(user_db=Depends(get_user_db)):
     yield UserManager(user_db)
