@@ -17,6 +17,7 @@ class ClientOutSchema(ClientInSchema):
 
 class ClientFilterSchema(ClientInSchema):
 
+    id: Optional[int]
     name: Optional[str]
     surname: Optional[str]
     phone_number: Optional[str]

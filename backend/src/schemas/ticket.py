@@ -11,8 +11,10 @@ class TicketInSchema(BaseModel):
 
 class TicketOutSchema(TicketInSchema):
     id: int
+    client_id: int
     return_date: Optional[date]
 
 
 class TicketFilterSchema(TicketInSchema):
     id: Optional[int]
+    client_id: Optional[int]
