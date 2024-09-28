@@ -11,3 +11,4 @@ class Ticket(Base):
     issue_date = Column(DATE, nullable=False, default=date.today())
     return_date = Column(DATE)
     comment = Column(String)
+    user_id = Column(ForeignKey("user.id"))
