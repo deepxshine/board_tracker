@@ -1,5 +1,6 @@
 from sqlalchemy.orm import DeclarativeBase
 
 
-class Base(DeclarativeBase):
+# noqa
+class Base(DeclarativeBase): # noqa
     pass

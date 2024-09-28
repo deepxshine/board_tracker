@@ -7,7 +7,7 @@ class Ticket(Base):
     __tablename__ = "ticket"
 
     id = Column(Integer, primary_key=True)
-    phone_number = Column(String, nullable=False)
+    client_id = Column(ForeignKey("client.id"))
     issue_date = Column(DATE, nullable=False, default=date.today())
     return_date = Column(DATE)
     comment = Column(String)
