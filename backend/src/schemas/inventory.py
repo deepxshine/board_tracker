@@ -8,7 +8,7 @@ class InventoryInSchema(BaseModel):
 
 class InventoryOutSchema(InventoryInSchema):
     id: int
-    title: int
+    title: str
 
 
 class InventoryFilterSchema(InventoryInSchema):
