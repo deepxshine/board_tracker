@@ -3,15 +3,29 @@ from typing import Optional
 from datetime import date
 
 
-class TicketInSchema(BaseModel):
-    issue_date: date
+class TicketEditSchema(BaseModel):
     comment: Optional[str]
+
+    class Config:
+        orm_mode = True
+
+
+class TicketInSchema(TicketEditSchema):
+    comment: Optional[str]
+
+    class Config:
+        orm_mode = True
 
 
 class TicketOutSchema(TicketInSchema):
     id: int
-    client_id: int
     return_date: Optional[date]
+    user_id: int
+    issue_date: date
+    comment: Optional[str]
+
+    class Config:
+        orm_mode = True
 
 
 class TicketFilterSchema(TicketInSchema):

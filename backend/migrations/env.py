@@ -15,6 +15,7 @@ sys.path.insert(0,
                                              '..', './src')))
 
 from src.models.user import User # noqa
+from src.models.client import Client # noqa
 from src.models.ticket import Ticket # noqa
 from src.models.inventory_in_ticket import InventoryInTicket # noqa
 from src.models.inventory import Inventory # noqa
