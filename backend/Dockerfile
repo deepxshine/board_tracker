@@ -1,13 +1,15 @@
-FROM python:3.11
+FROM python:3.11-slim
 
-WORKDIR /backend
+ENV PYTHONUNBUFFERED=1
 
-COPY ./src /src
+ENV PYTHONDONTWRITEBYTECODE=1
 
-COPY requirements.txt requirements.txt
+WORKDIR /app
 
-RUN pip install -r requirements.txt
+COPY requirements.txt .
 
-CMD ["sh", "-c", "export PYTHONPATH=\"${PYTHONPATH}:src\""]
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8081", "--reload"]
+COPY ./src ./src
+
+CMD ["python3", "-m","uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

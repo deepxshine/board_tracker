@@ -62,6 +62,7 @@ uvicorn = "0.30.6"
 uvloop = "0.20.0"
 watchfiles = "0.24.0"
 websockets = "13.1"
+prometheus-fastapi-instrumentator = "^7.0.0"
 
 
 [build-system]
