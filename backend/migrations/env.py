@@ -14,7 +14,14 @@ sys.path.insert(0,
                 os.path.abspath(os.path.join(os.path.dirname(__file__),
                                              '..', './src')))
 
-from src.models.ticket import Base as TicketBase
+from src.models.user import User # noqa
+from src.models.ticket import Ticket # noqa
+from src.models.inventory_in_ticket import InventoryInTicket # noqa
+from src.models.inventory import Inventory # noqa
+from src.models.base import Base
+
+
+
 from src.constants import (POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB,
                            POSTGRES_PORT, POSTGRES_HOST)
 
@@ -35,7 +42,7 @@ config.set_main_option('sqlalchemy.url',
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = [TicketBase.metadata]
+target_metadata = [Base.metadata]
 
 
 # other values from the config, defined by the needs of env.py,

@@ -1,24 +1,31 @@
-version: '3'
+version: '3.7'
 
 
 services:
 
-    backend:
-        build:
-            context: ../backend
-            dockerfile: ../backend/Dockerfile
-        ports:
-            - "8000:8000"
-        depends_on:
-            -   db
-        volumes:
-            -   ../backend/src:/backend/src
-        environment:
-            env_file: .env
+  backend:
+    build:
+      context: ../backend
+      dockerfile: ../backend/Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    volumes:
+      - ../backend/src:/backend/src
+    environment:
+      env_file: .env
+    restart: always
 
-    db:
-        image: postgres:15.6-bullseye
-        ports:
-            - "5432:5432"
-        environment:
-            env_file: .env
+
+  db:
+    image: postgres:15.6-bullseye
+    ports:
+      - "5432:5432"
+    environment:
+      env_file: .env
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+
