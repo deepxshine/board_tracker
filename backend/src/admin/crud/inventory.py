@@ -26,7 +26,7 @@ async def get_inventory(
 ):
     query = select(Inventory).where(
         or_(false(), *[getattr(Inventory, key) == value for key, value in
-              data.dict().items() if value]))
+                       data.dict().items() if value]))
     result = await session.scalars(query)
     return result.all()
 
@@ -45,4 +45,3 @@ async def delete_inventory(
         raise e
     except Exception:
         raise HTTPException(status_code=500, detail="Something went wrong")
-    

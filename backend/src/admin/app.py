@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.auth.backend import auth_backend
 from src.auth.user_manager import get_user_manager
 from src.models.user import User
-from src.schemas.user import UserRead, UserCreate, UserUpdate
 from src.admin.routers.ticket import router as ticket_router
 from src.admin.routers.inventory import router as inventory_router
 from src.admin.routers.client import router as client_router

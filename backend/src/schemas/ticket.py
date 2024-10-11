@@ -12,7 +12,7 @@ class TicketEditSchema(BaseModel):
 
 class TicketInSchema(TicketEditSchema):
     client_id: int
-    
+
     class Config:
         orm_mode = True
 

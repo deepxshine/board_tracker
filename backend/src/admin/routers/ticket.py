@@ -3,8 +3,8 @@ from typing import List, Dict
 from fastapi import APIRouter, Depends
 
 from src.admin.crud.ticket import (create_ticket, get_ticket, edit_ticket,
-                             delete_inventory_from_ticket,
-                             add_inventory_to_ticket)
+                                   delete_inventory_from_ticket,
+                                   add_inventory_to_ticket)
 
 from src.schemas.ticket import (TicketInSchema, TicketOutSchema,
                                 TicketEditSchema)

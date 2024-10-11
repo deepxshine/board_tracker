@@ -8,7 +8,6 @@ from src.schemas.ticket import (TicketInSchema, TicketOutSchema,
                                 TicketEditSchema, TicketFilterSchema)
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, or_, false
-from src.models.client import Client
 from src.models.inventory_in_ticket import InventoryInTicket
 
 
@@ -37,9 +36,10 @@ async def get_ticket(
 ):
     query = select(Ticket).where(
         or_(false(), *[getattr(Ticket, key) == value for key, value in
-              data.dict().items() if value]))
+                       data.dict().items() if value]))
     result = await session.scalars(query)
     return result.all()
+
 
 async def edit_ticket(
         ticket_id: int,

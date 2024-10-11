@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends
-from src.admin.crud.client import create_client, edit_client, get_client, delete_client
-from src.schemas.client import ClientInSchema, ClientOutSchema, ClientFilterSchema, ClientEditSchema
+from src.admin.crud.client import (create_client, edit_client,
+                                   get_client, delete_client)
+from src.schemas.client import (ClientInSchema, ClientOutSchema,
+                                ClientFilterSchema, ClientEditSchema)
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.auth.backend import current_active_user
 from src.database.database import get_session
@@ -13,6 +15,7 @@ router = APIRouter(
     tags=["client"],
     responses={404: {"description": "Not found"}},
 )
+
 
 @is_admin
 @router.get("/")

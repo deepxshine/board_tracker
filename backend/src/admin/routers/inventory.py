@@ -16,11 +16,12 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
+
 @router.post("/")
 async def post_inventory(inventory: InventoryInSchema,
-                      current_user: int = Depends(current_active_user, ),
-                      session: AsyncSession = Depends(get_session),
-                      ) -> InventoryOutSchema:
+                         current_user: int = Depends(current_active_user, ),
+                         session: AsyncSession = Depends(get_session),
+                         ) -> InventoryOutSchema:
     inventory = await create_inventory(session, inventory, current_user.id)
     return inventory
 
