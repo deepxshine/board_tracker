@@ -8,7 +8,8 @@ from src.constants import (POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB,
                            )
 
 postgres_url = f"postgresql+asyncpg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"  # noqa
-
+# postgres_url = "postgresql+asyncpg://postgres:postgres@db:5432/db"
+print(POSTGRES_HOST)
 engine = create_async_engine(postgres_url)
 
 

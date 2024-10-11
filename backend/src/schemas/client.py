@@ -14,6 +14,7 @@ class ClientEditSchema(ClientInSchema):
     phone_number: Optional[str]
 
 
+
 class ClientOutSchema(ClientInSchema):
     id: int
 

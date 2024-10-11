@@ -11,6 +11,13 @@ class TicketEditSchema(BaseModel):
 
 
 class TicketInSchema(TicketEditSchema):
+    comment: Optional[str]
+
+    class Config:
+        orm_mode = True
+
+
+class TicketInSchema(TicketEditSchema):
     client_id: int
     
     class Config:

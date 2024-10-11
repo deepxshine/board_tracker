@@ -3,10 +3,6 @@ name = "backend"
 version = "0.1.0"
 description = ""
 authors = ["deepxshine <aevdok2800@gmail.com>"]
-<<<<<<< HEAD
-=======
-
->>>>>>> 8de257a1f7703daab9ae06df87b95afe8168f8e7
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -65,6 +61,7 @@ uvicorn = "0.30.6"
 uvloop = "0.20.0"
 watchfiles = "0.24.0"
 websockets = "13.1"
+prometheus-fastapi-instrumentator = "^7.0.0"
 
 
 [build-system]
