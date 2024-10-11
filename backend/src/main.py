@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi_users import FastAPIUsers
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from src.auth.backend import auth_backend
 from src.auth.user_manager import get_user_manager
@@ -16,6 +17,8 @@ fastapi_users = FastAPIUsers[User, id](
     [auth_backend],
 )
 app = FastAPI()
+app.mount("/admin", admin_app)
+
 app.mount("/admin", admin_app)
 
 app.include_router(
@@ -57,7 +60,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+Instrumentator().instrument(app).expose(app)
+
 if __name__ == '__main__':
     import uvicorn
 
-    uvicorn.run('main:app', host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run('main:app', host="0.0.0.0", port=8000, reload=True)

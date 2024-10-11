@@ -4,28 +4,64 @@ version: '3.7'
 services:
 
   backend:
+    container_name: backend
     build:
       context: ../backend
       dockerfile: ../backend/Dockerfile
     ports:
-      - "8081:8081"
+      - "8000:8000"
     depends_on:
       - db
     volumes:
-      - ../backend/src:/backend/src
-    environment:
-      env_file: .env
+      - ../backend/src:/app/src
+    env_file:
+      - .env
     restart: always
 
 
   db:
+    container_name: db
     image: postgres:15.6-bullseye
     ports:
       - "5432:5432"
-    environment:
-      env_file: .env
-      POSTGRES_PASSWORD: postgres
+    env_file:
+      - .env
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus_data/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana_data:/var/lib/grafana
+
+volumes:
+  postgres_data:
+  prometheus_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./prometheus_data
+  grafana_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /Users/aleksejevdokimov/Desktop/itmo/board_tracker/infra/grafana_data
+
 
 

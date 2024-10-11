@@ -25,6 +25,7 @@ async def read_ticket(phone_number: str,
                       session: AsyncSession = Depends(get_session),
                       ) -> Dict[str, List[TicketOutSchema]]:
     tickets = await get_ticket(session, phone_number)
+    print(tickets)
     return {"tickets": tickets}
 
 
