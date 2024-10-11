@@ -3,6 +3,10 @@ name = "backend"
 version = "0.1.0"
 description = ""
 authors = ["deepxshine <aevdok2800@gmail.com>"]
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8de257a1f7703daab9ae06df87b95afe8168f8e7
 
 [tool.poetry.dependencies]
 python = "^3.11"
