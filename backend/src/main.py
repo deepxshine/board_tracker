@@ -42,18 +42,9 @@ app.include_router(ticket_router)
 app.include_router(inventory_router)
 app.include_router(client_router)
 
-origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
-    "0.0.0.0",
-
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # Adjust as necessary
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

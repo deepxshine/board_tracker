@@ -9,3 +9,6 @@ class Client(Base):
     name = Column(String, nullable=False)
     surname = Column(String, nullable=False)
     phone_number = Column(String(12), nullable=False, unique=True)
+
+    def __repr__(self):
+        return f'{self.id} {self.name} {self.surname} {self.phone_number}'
