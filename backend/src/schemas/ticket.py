@@ -11,7 +11,7 @@ class TicketEditSchema(BaseModel):
 
 
 class TicketInSchema(TicketEditSchema):
-    comment: Optional[str]
+    client_id: int
 
     class Config:
         orm_mode = True
@@ -20,7 +20,6 @@ class TicketInSchema(TicketEditSchema):
 class TicketOutSchema(TicketInSchema):
     id: int
     return_date: Optional[date]
-    user_id: int
     issue_date: date
     comment: Optional[str]
 

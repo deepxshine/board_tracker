@@ -29,3 +29,16 @@ async def get_all_or_404(
         raise HTTPException(status_code=404,
                             detail=f"Object {model.__tablename__} not found")
     return obj
+
+
+async def get_list_or_404(
+        model: Base,
+        field: str,
+        value: any,
+        session: AsyncSession) -> ScalarResult:
+    query = select(model).where(getattr(model, field) == value)
+    obj = await session.scalars(query)
+    if not obj:
+        raise HTTPException(status_code=404,
+                            detail=f"Object {model.__tablename__} not found")
+    return obj.all()

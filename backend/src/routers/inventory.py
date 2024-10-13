@@ -21,9 +21,9 @@ router = APIRouter(
 async def inventory_list(
         session: AsyncSession = Depends(get_session),
         current_user: int = Depends(current_active_user, )
-) -> dict[str, List[InventoryOutSchema]]:
+) -> List[InventoryOutSchema]:
     result = await get_all_or_404(Inventory, session)
-    return {"inventory": result}
+    return result
 
 
 @router.get("/{id}")
