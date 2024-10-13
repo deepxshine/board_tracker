@@ -3,8 +3,6 @@ name = "backend"
 version = "0.1.0"
 description = ""
 authors = ["deepxshine <aevdok2800@gmail.com>"]
-
-
 [tool.poetry.dependencies]
 python = "^3.11"
 alembic = "1.13.2"
@@ -59,7 +57,7 @@ typer = "0.12.5"
 typing-extensions = "4.12.2"
 ujson = "5.10.0"
 uvicorn = "0.30.6"
-uvloop = "0.20.0"
+# uvloop = "0.20.0"
 watchfiles = "0.24.0"
 websockets = "13.1"
 prometheus-fastapi-instrumentator = "^7.0.0"

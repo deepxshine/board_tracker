@@ -6,3 +6,4 @@
 | 0.0.4   | Backend: add auth                          | 25.09.2024 | Alexey Evdokimov |
 | 0.0.5   | Backend: add basic handlers to client user | 02.10.2024 | Alexey Evdokimov |
 | 0.0.6   | Add grafana and prometheus                 | 05.10.2024 | Alexey Evdokimov |
+| 0.0.7   | Backend: add admin handlers                | 10.10.2024 | Artem Gavrilov   |

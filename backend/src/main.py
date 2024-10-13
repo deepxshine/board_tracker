@@ -17,6 +17,7 @@ fastapi_users = FastAPIUsers[User, id](
     [auth_backend],
 )
 app = FastAPI()
+app.mount("/admin", admin_app)
 
 app.mount("/admin", admin_app)
 
