@@ -3,7 +3,11 @@ from typing import Optional
 
 
 class InventoryInSchema(BaseModel):
-    title: int
+    title: str
+
+
+class InventoryEditSchema(InventoryInSchema):
+    pass
 
 
 class InventoryOutSchema(InventoryInSchema):

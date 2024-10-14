@@ -8,10 +8,10 @@ class ClientInSchema(BaseModel):
     phone_number: str
 
 
-class ClientEditSchema(ClientInSchema):
-    name: Optional[str]
-    surname: Optional[str]
-    phone_number: Optional[str]
+class ClientEditSchema(BaseModel):
+    name: Optional[str] = None
+    surname: Optional[str] = None
+    phone_number: Optional[str] = None
 
 
 class ClientOutSchema(ClientInSchema):

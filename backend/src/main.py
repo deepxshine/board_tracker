@@ -9,7 +9,7 @@ from src.models.user import User
 from src.schemas.user import UserRead, UserCreate, UserUpdate
 from src.routers.ticket import router as ticket_router
 from src.routers.inventory import router as inventory_router
-from src.admin.app import app as admin_app
+from src.routers.admin.admin import router as admin_router
 from src.routers.client import router as client_router
 
 fastapi_users = FastAPIUsers[User, id](
@@ -17,9 +17,6 @@ fastapi_users = FastAPIUsers[User, id](
     [auth_backend],
 )
 app = FastAPI()
-app.mount("/admin", admin_app)
-
-app.mount("/admin", admin_app)
 
 app.include_router(
     fastapi_users.get_auth_router(auth_backend),
@@ -39,17 +36,22 @@ app.include_router(
     tags=["users"],
 )
 
+
 app.include_router(ticket_router)
 app.include_router(inventory_router)
 app.include_router(client_router)
 
-origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
-    "0.0.0.0",
+app.include_router(admin_router)
 
+origins = [
+    "http://localhost",
+    "http://localhost:3000",
+    "http://localhost:8080",
+    "http://0.0.0.0",
+    "http://0.0.0.0:80",
+    "http://0.0.0.0:3000",
+    "http://frontend:3000",
+    "http://frontend",
 ]
 
 app.add_middleware(
