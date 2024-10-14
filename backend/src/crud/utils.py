@@ -1,7 +1,9 @@
-from fastapi.exceptions import HTTPException
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import ScalarResult, select, func
+from sqlalchemy import ScalarResult, func
 from src.models.base import Base
+from sqlalchemy import asc, desc
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from fastapi import HTTPException
 
 
 async def get_object_or_404(
@@ -15,13 +17,6 @@ async def get_object_or_404(
         raise HTTPException(status_code=404,
                             detail=f"Object {model.__tablename__} not found")
     return obj
-
-
-from sqlalchemy import select, asc, desc
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.future import select
-from sqlalchemy.orm import Session
-from fastapi import HTTPException
 
 
 async def get_all_or_404(

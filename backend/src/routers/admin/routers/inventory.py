@@ -1,16 +1,17 @@
 from typing import List
 
 from src.auth.backend import current_active_user
-from src.crud.utils import get_all_or_404, get_count, get_list_or_404
+from src.crud.utils import get_all_or_404, get_count
 from src.database.database import get_session
 from src.models.inventory import Inventory
 from fastapi import APIRouter, Depends, HTTPException
 
 from src.permissions.permissions import is_admin
-from src.schemas.inventory import InventoryOutSchema, InventoryInSchema, \
-    InventoryEditSchema
-from src.crud.inventory import del_inventory, create_inventory, edit_inventory, \
-    search_inventory
+from src.schemas.inventory import (InventoryOutSchema, InventoryInSchema,
+                                   InventoryEditSchema)
+from src.crud.inventory import (del_inventory, create_inventory,
+                                edit_inventory,
+                                search_inventory)
 from sqlalchemy.ext.asyncio import AsyncSession
 
 router = APIRouter(
@@ -89,4 +90,3 @@ async def get_inventories_by_name(
         inventories = await search_inventory(name, session)
         return inventories
     raise HTTPException(status_code=403, detail="Forbidden")
-

@@ -6,7 +6,7 @@ from src.models.ticket import Ticket
 from src.schemas.client import ClientInSchema, ClientFilterSchema, \
     ClientEditSchema
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, or_, false, func
+from sqlalchemy import select, or_, false
 
 
 async def create_client(
@@ -62,7 +62,7 @@ async def del_client(
     result = await session.execute(query)
     client = result.scalar()
     tickets = await get_list_or_404(
-       Ticket, "client_id", client_id, session
+        Ticket, "client_id", client_id, session
     )
     if tickets:
         raise HTTPException(status_code=400, detail="Client has tickets")

@@ -1,12 +1,12 @@
 from typing import List
 
 from src.crud.user import edit_user, del_user
-from src.crud.utils import get_all_or_404, get_count, get_list_or_404
+from src.crud.utils import get_all_or_404, get_count
 from src.database.database import get_session
 from src.models.user import User
 from fastapi import APIRouter, Depends, HTTPException
 from src.permissions.permissions import is_admin
-from src.schemas.user import UserCreate, UserUpdate, UserRead
+from src.schemas.user import UserUpdate, UserRead
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.auth.backend import current_active_user
 
@@ -57,7 +57,7 @@ async def delete_user(
         user_id: int,
         session: AsyncSession = Depends(get_session),
         current_user: int = Depends(current_active_user, ),
-)-> dict:
+) -> dict:
     if is_admin(current_user):
         await del_user(user_id, session)
         return {"message": "User deleted successfully"}

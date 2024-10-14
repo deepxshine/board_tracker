@@ -23,6 +23,3 @@ class UserUpdate(BaseModel):
     is_superuser: Optional[bool] = None
     password: Optional[bool] = None
     email: Optional[str] = None
-
-
-

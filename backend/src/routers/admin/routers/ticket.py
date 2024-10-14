@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends
 from fastapi.exceptions import HTTPException
 
 from src.auth.backend import current_active_user
-from src.crud.utils import get_all_or_404, get_object_or_404, get_list_or_404, \
-    get_count
+from src.crud.utils import (get_all_or_404, get_object_or_404,
+                            get_list_or_404, get_count)
 from src.database.database import get_session
 from src.models.inventory import Inventory
 from src.models.inventory_in_ticket import InventoryInTicket

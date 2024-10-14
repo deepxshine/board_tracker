@@ -1,10 +1,10 @@
 from fastapi.exceptions import HTTPException
 
 from src.schemas.client import (ClientOutSchema, ClientInSchema,
-                                ClientFilterSchema, ClientEditSchema)
+                                ClientEditSchema)
 from src.crud.client import create_client, edit_client, del_client
-from src.crud.utils import get_all_or_404, get_count, get_object_or_404, \
-    get_list_or_404
+from src.crud.utils import (get_all_or_404, get_count,
+                            get_list_or_404)
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.auth.backend import current_active_user
@@ -92,10 +92,7 @@ async def get_client_by_number(
 ) -> list[ClientOutSchema]:
     if is_admin(current_user):
         client = await get_list_or_404(Client, "phone_number", phone_number,
-                                         session)
+                                       session)
         return client
 
     raise HTTPException(status_code=403, detail="Forbidden")
-
-
-

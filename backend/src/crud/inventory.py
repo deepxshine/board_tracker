@@ -2,8 +2,7 @@ from fastapi import HTTPException
 
 from src.models.inventory import Inventory
 from src.models.inventory_in_ticket import InventoryInTicket
-from src.schemas.inventory import InventoryOutSchema, InventoryInSchema, \
-    InventoryEditSchema
+from src.schemas.inventory import InventoryInSchema, InventoryEditSchema
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 

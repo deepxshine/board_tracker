@@ -104,6 +104,7 @@ async def delete_inventory_from_ticket(
     except Exception:
         raise HTTPException(status_code=500, detail="Something went wrong")
 
+
 async def del_ticket(
         ticket_id: int,
         session: AsyncSession
