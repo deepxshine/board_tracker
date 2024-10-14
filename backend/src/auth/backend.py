@@ -8,7 +8,7 @@ from src.models.user import User
 
 
 def get_jwt_strategy() -> JWTStrategy:
-    return JWTStrategy(secret=JWT_SECRET, lifetime_seconds=JWT_LIFETIME)
+    return JWTStrategy(secret=JWT_SECRET, lifetime_seconds=int(JWT_LIFETIME))
 
 
 auth_backend = AuthenticationBackend(

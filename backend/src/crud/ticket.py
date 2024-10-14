@@ -103,3 +103,16 @@ async def delete_inventory_from_ticket(
         raise e
     except Exception:
         raise HTTPException(status_code=500, detail="Something went wrong")
+
+async def del_ticket(
+        ticket_id: int,
+        session: AsyncSession
+):
+    try:
+        ticket = await get_object_or_404(Ticket, "id", ticket_id, session)
+        await session.delete(ticket)
+        await session.commit()
+    except HTTPException as e:
+        raise e
+    except Exception:
+        raise HTTPException(status_code=500, detail="Something went wrong")

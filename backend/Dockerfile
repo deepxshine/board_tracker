@@ -11,5 +11,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY ./src ./src
-
-CMD ["python3", "-m","uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+COPY ./migrations ./migrations
+COPY alembic.ini .
+CMD ["sh", "-c", "alembic upgrade head && python3 -m uvicorn src.main:app --host 0.0.0.0 --port 8080 --reload"]

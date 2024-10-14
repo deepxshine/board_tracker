@@ -1,3 +1,5 @@
+from typing import Optional
+from pydantic import BaseModel
 from fastapi_users import schemas
 
 
@@ -14,5 +16,13 @@ class UserCreate(schemas.BaseUserCreate):
     fullname: str
 
 
-class UserUpdate(schemas.BaseUserUpdate):
-    pass
+class UserUpdate(BaseModel):
+    fullname: Optional[str] = None
+    is_active: Optional[bool] = None
+    is_verified: Optional[bool] = None
+    is_superuser: Optional[bool] = None
+    password: Optional[bool] = None
+    email: Optional[str] = None
+
+
+

@@ -1,6 +1,6 @@
 from fastapi.exceptions import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import ScalarResult, select
+from sqlalchemy import ScalarResult, select, func
 from src.models.base import Base
 
 
@@ -17,15 +17,53 @@ async def get_object_or_404(
     return obj
 
 
+from sqlalchemy import select, asc, desc
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from sqlalchemy.orm import Session
+from fastapi import HTTPException
+
+
 async def get_all_or_404(
         model: Base,
         session: AsyncSession,
         offset: int = 0,
-        limit: int = None
+        limit: int = 20,
+        sort_by: str = "id",
+        order_by: str = "asc",
 ) -> ScalarResult:
-    query = select(model).offset(offset).limit(limit)
+    sort_column = getattr(model, sort_by)
+    query = (
+        select(model)
+        .offset(offset)
+        .limit(limit)
+        .order_by(asc(sort_column) if order_by == "asc" else desc(sort_column))
+    )
     obj = await session.scalars(query)
     if not obj:
         raise HTTPException(status_code=404,
                             detail=f"Object {model.__tablename__} not found")
-    return obj
+
+    return obj.all()
+
+
+async def get_list_or_404(
+        model: Base,
+        field: str,
+        value: any,
+        session: AsyncSession) -> ScalarResult:
+    query = select(model).where(getattr(model, field) == value)
+    obj = await session.scalars(query)
+    if not obj:
+        raise HTTPException(status_code=404,
+                            detail=f"Object {model.__tablename__} not found")
+    return obj.all()
+
+
+async def get_count(
+        Table: Base,
+        session: AsyncSession,
+
+):
+    result = await session.execute(func.count(Table.id))
+    return result.scalar()
